@@ -27,13 +27,16 @@ import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
+
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 
 import java.util.Optional;
 
-@Model(adaptables = Resource.class)
+@Model(adaptables = Resource.class,defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class HelloWorldModel {
 
     @ValueMapValue(name=PROPERTY_RESOURCE_TYPE, injectionStrategy=InjectionStrategy.OPTIONAL)
@@ -46,6 +49,12 @@ public class HelloWorldModel {
     private ResourceResolver resourceResolver;
 
     private String message;
+    
+    @ValueMapValue
+    private String text1;
+    
+    @ValueMapValue
+    private String text2;
 
     @PostConstruct
     protected void init() {
@@ -62,5 +71,23 @@ public class HelloWorldModel {
     public String getMessage() {
         return message;
     }
+    
+    /***
+    *
+    * @return the value of title, if null or blank returns "Default Value here!"
+    */
+    public String getText1() {
+        return StringUtils.isNotBlank(text1) ? text1 : "Default Value here!";
+    }
+
+    
+    /***
+    *
+    * @return the value of title, if null or blank returns "Default Value here!"
+    */
+    public String getText2() {
+        return StringUtils.isNotBlank(this.text2) ? this.text2.toUpperCase() : null;
+    }
+
 
 }
