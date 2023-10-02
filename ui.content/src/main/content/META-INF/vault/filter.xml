@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/conf/gohunt-learning" mode="merge"/>
+    <filter root="/content/gohunt-learning" mode="merge"/>
+    <filter root="/content/dam/gohunt-learning" mode="merge">
+        <exclude pattern="/content/dam/gohunt-learning(/.*)?"/>
+        <include pattern="/content/dam/gohunt-learning/jcr:content(/.*)?"/>
+    </filter>
+    <filter root="/content/dam/gohunt-learning/asset.jpg" mode="merge"/>
+    <filter root="/content/experience-fragments/gohunt-learning" mode="merge"/>
+</workspaceFilter>
